@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 ThemeData darkMode = ThemeData(
   colorScheme: ColorScheme.light(
-    background: Colors.grey.shade900,
+    surface: Colors.grey.shade900,
     primary: Colors.grey.shade600,
     secondary: Colors.grey.shade700,
     tertiary: Colors.grey.shade800,
@@ -16,7 +16,7 @@ ThemeData darkMode = ThemeData(
     backgroundColor: Colors.grey.shade300,
   ),
   textTheme: TextTheme(
-      bodyMedium: TextStyle(color: Colors.white),
+      bodyMedium: const TextStyle(color: Colors.white),
       titleLarge:
           TextStyle(color: Colors.grey.shade600, fontWeight: FontWeight.bold)),
 );

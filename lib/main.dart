@@ -31,3 +31,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// import 'package:flutter/material.dart';
+//
+// void main() {
+//   runApp(
+//     MaterialApp(
+//       home: Scaffold(
+//         backgroundColor: Colors.red,
+//         appBar: AppBar(
+//           title: const Text('XXXXXXXXXXXXXXX'),
+//         ),
+//       ),
+//     ),
+//   );
+// }

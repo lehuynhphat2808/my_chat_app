@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_chat_app/service/chat/chat_service.dart';
 import 'package:my_chat_app/widget/my_drawer.dart';
 import 'package:my_chat_app/widget/user_tile.dart';
-import 'package:provider/provider.dart';
 
 import '../service/auth/auth_service.dart';
 import 'chat_page.dart';
@@ -10,7 +9,7 @@ import 'chat_page.dart';
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  final AuthService authService = AuthService();
+  final AuthService authService = AuthService.instance;
 
   final ChatService chatService = ChatService();
 
@@ -40,17 +39,17 @@ class HomePage extends StatelessWidget {
       stream: chatService.getUsersStream(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
+          return const Center(
             child: Text('Error!'),
           );
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
+          return const Center(
             child: Text('Loading..'),
           );
         }
         return ListView(
-          padding: EdgeInsets.only(top: 8),
+          padding: const EdgeInsets.only(top: 8),
           children: snapshot.data!
               .map<Widget>((userData) => _buildUserItem(userData, context))
               .toList(),
@@ -61,13 +60,13 @@ class HomePage extends StatelessWidget {
 
   Widget _buildUserItem(Map<String, dynamic> userData, BuildContext context) {
     return UserTile(
-      text: userData['email'],
+      text: userData['name'] ?? userData['email'],
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => ChatPage(
-                receiverEmail: userData['email'],
+                receiverEmail: userData['name'] ?? userData['email'],
                 receiverId: userData['uid'],
               ),
             ));

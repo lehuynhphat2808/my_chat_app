@@ -1,27 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 
 class AuthService {
   // instance of auth
+  static AuthService? _authService;
+
+  AuthService._();
+
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   // instance of firestore
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  late UserCredential userCredential;
+
+  static AuthService get instance => _authService ??= AuthService._();
 
   // sign user in
   Future<UserCredential> signInWithEmailAndPassword(
       String email, String password) async {
     try {
       // sign in
-      UserCredential userCredential =
-          await _firebaseAuth.signInWithEmailAndPassword(
+      userCredential = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      _firestore.collection('Users').doc(userCredential.user!.uid).set({
-        'uid': userCredential.user!.uid,
-        'email': userCredential.user!.email
-      });
       return userCredential;
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);
@@ -32,14 +33,14 @@ class AuthService {
       String email, String password) async {
     try {
       // sign in
-      UserCredential userCredential =
-          await _firebaseAuth.createUserWithEmailAndPassword(
+      userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
       _firestore.collection('Users').doc(userCredential.user!.uid).set({
         'uid': userCredential.user!.uid,
-        'email': userCredential.user!.email
+        'email': userCredential.user!.email,
+        'name': null,
       });
 
       return userCredential;

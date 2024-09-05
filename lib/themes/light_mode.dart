@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 
 ThemeData lightMode = ThemeData(
   colorScheme: ColorScheme.light(
-    background: Colors.grey.shade300,
-    primary: Colors.grey.shade500,
-    secondary: Colors.grey.shade600,
-    tertiary: Colors.white,
-    inversePrimary: Colors.grey.shade900,
+    surface: Colors.white,
+    primary: Colors.white,
+    secondary: const Color(0xffCD5D7A),
+    tertiary: const Color(0xffCD5D7A).withOpacity(0.4),
+    inversePrimary: const Color(0xffBB2649),
   ),
-  appBarTheme: AppBarTheme(
-      color: Colors.grey.shade500,
+  appBarTheme: const AppBarTheme(
+      color: Color(0xffCD5D7A),
       foregroundColor: Colors.white,
       centerTitle: true),
-  drawerTheme: DrawerThemeData(
-    backgroundColor: Colors.grey.shade300,
+  drawerTheme: const DrawerThemeData(
+    backgroundColor: Color(0xffD26E8A),
   ),
-  textTheme: TextTheme(
-      bodyMedium: TextStyle(color: Colors.grey.shade500),
+  dividerTheme: const DividerThemeData(color: Colors.white),
+  textTheme: const TextTheme(
+      bodyMedium: TextStyle(color: Colors.white),
       titleLarge: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
 );

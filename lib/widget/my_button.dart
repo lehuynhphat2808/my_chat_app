@@ -18,7 +18,7 @@ class MyButton extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(4))),
         child: Text(
           text,
-          style: TextStyle(color: Theme.of(context).colorScheme.tertiary),
+          style: TextStyle(color: Theme.of(context).colorScheme.primary),
         ),
       ),
     );
